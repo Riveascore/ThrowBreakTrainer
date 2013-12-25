@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Video name:</strong>
+  <%= @video_info.video_name %>
+</p>
+
+<p>
+  <strong>Number of milliseconds:</strong>
+  <%= @video_info.number_of_milliseconds %>
+</p>
+
+<%= link_to 'Edit', edit_video_info_path(@video_info) %> |
+<%= link_to 'Back', video_infos_path %>

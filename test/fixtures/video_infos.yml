@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  video_name: MyString
+  number_of_milliseconds: 1
+
+two:
+  video_name: MyString
+  number_of_milliseconds: 1

@@ -1,0 +1,29 @@
+<h1>Listing video_infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Video name</th>
+      <th>Number of milliseconds</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @video_infos.each do |video_info| %>
+      <tr>
+        <td><%= video_info.video_name %></td>
+        <td><%= video_info.number_of_milliseconds %></td>
+        <td><%= link_to 'Show', video_info %></td>
+        <td><%= link_to 'Edit', edit_video_info_path(video_info) %></td>
+        <td><%= link_to 'Destroy', video_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video info', new_video_info_path %>

@@ -1,4 +1,11 @@
 ThrowBreakTrainer::Application.routes.draw do
+  get "main_game/throw_break_trainer"
+  resources :video_infos
+
+  resources :high_scores
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

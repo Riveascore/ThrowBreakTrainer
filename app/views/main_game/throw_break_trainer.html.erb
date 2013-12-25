@@ -1,0 +1,127 @@
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video2"%>
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video3"%>
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video1"%>
+
+<script>
+// alert("hi")
+// function random() { 
+// 	var randomNumber = randomIntegerInRange(0, <%= @numberOfThrows %>);
+// 	$("#header").text(randomNumber);
+// 	setTimeout(random, 1000);
+// }
+
+
+var keysPressed = {};
+
+document.addEventListener('keydown', function(e) {
+	keysPressed[e.keyCode] = true;
+}, false);
+document.addEventListener('keyup', function(e) {
+	keysPressed[e.keyCode] = false;
+}, false);
+
+var allVideos = jQuery.parseJSON('<%= raw @videos %>');
+
+
+function gameLoop() {
+	var allMilliseconds = [];
+
+	var randomNumber = randomIntegerInRange(0, allVideos.length/3-1)*3;
+	var firstVideoName = "";
+	for(var i = 0; i < 3; i++) {
+		var currentVideo = allVideos[randomNumber + i];
+		var videoName = currentVideo.video_name;
+		if(i == 0) {
+			firstVideoName = videoName;
+		}		
+		var milliseconds = currentVideo.number_of_milliseconds;
+		allMilliseconds.push(parseInt(milliseconds));
+		currentVideoHolder = $("#video" + (i + 1));
+		currentVideoHolder[0].src = "/videos/" + videoName;
+		currentVideoHolder.data('data-number-of-milliseconds', milliseconds);		
+	}
+	//Get max milliseconds of right/wrong
+	var totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
+	// alert(totalVideoTime);
+	var video1 = $("#video1");
+
+	video1.show();
+	var numberOfMilliseconds = allMilliseconds[0];
+	var correct = false;
+	var video1 = $("#video1");
+
+	var throwType = firstVideoName.replace(/(\w{1}).*/, "$1");
+	// alert(throwType);
+	function throwCheckLoop() {
+
+		var keysPressedString = "";
+		for(var key in keysPressed) {
+			keysPressedString += key + keysPressed[key];
+		}
+		switch(throwType) {
+			case "1":
+				if(keysPressed['38']) {
+					clearInterval(gameInterval);
+				}
+				else if(keysPressed['37']) {
+					// alert(hi);
+					correct = true;
+				}	
+				break;
+			case "2":
+				if(keysPressed['37']) {
+					clearInterval(gameInterval);
+				}		
+				else if(keysPressed['38']) {
+					correct = true;
+				}	
+				break;
+			case "P":
+				if(keysPressed['37'] && keysPressed['38']) {
+					correct = true;
+					clearInterval(gameInterval);
+				}	
+				break;					
+		}
+	}
+	$("#video2, #video3").hide();
+	video1[0].play();
+	// var gameInterval = setInterval(throwCheckLoop(), 20);
+	var gameInterval = setInterval(function() {
+		throwCheckLoop();
+	}, 1);
+
+	setTimeout(function() {
+		clearInterval(gameInterval);
+		video1.hide();
+		if(correct) {
+			$("#video2").show();
+			$("#video2")[0].play();
+		}
+		else {
+			$("#video3").show();
+			$("#video3")[0].play();
+		}
+	}, numberOfMilliseconds);
+
+
+	setTimeout(function(){
+		gameLoop();
+	}, totalVideoTime);
+	return totalVideoTime;
+}
+
+gameLoop();
+// setTimeout(function(){
+// 	gameLoop();
+// }, 6000);
+
+function randomIntegerInRange(min, max) {
+	return Math.floor(Math.random()*(max - min + 1)) + min;
+}
+
+// }
+// fv.src.sub(/http:
+// video1.play();
+</script>
+

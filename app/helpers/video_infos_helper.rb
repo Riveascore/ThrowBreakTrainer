@@ -1,0 +1,2 @@
+module VideoInfosHelper
+end
