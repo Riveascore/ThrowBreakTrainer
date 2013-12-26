@@ -7,5 +7,6 @@ class MainGameController < ApplicationController
       videoInfo = VideoInfo.where("video_name = ?", videoName).first
     }
     @videos = vids.to_json  	
+    @videoNames = videoNames.to_json
   end
 end

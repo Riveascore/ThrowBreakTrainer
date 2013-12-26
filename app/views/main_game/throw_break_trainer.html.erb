@@ -21,7 +21,7 @@ document.addEventListener('keyup', function(e) {
 }, false);
 
 var allVideos = jQuery.parseJSON('<%= raw @videos %>');
-
+var videoNamesAll = jQuery.parseJSON('<%= raw @videoNames %>');
 
 function gameLoop() {
 	var allMilliseconds = [];
