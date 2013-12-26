@@ -9,6 +9,8 @@ gem 'rails_12factor', group: :production
 # Gem to configure using postgres
 gem 'pg'
 
+# Adding compass for sass styling
+gem 'compass-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

@@ -1,6 +1,27 @@
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video2"%>
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video3"%>
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video1"%>
+<div class="callout-container top-right callout1">
+	<h3>Controls</h3>
+	<div class="button-container container1">
+		<div class="button-frame plastic">
+		  <div id="button1" class="the-button plastic"></div>
+		</div>
+	</div>
+	<div class="button-container container2">
+		<div class="button-frame plastic">
+		  <div id="button2" class="the-button plastic"></div>
+		</div>
+	</div>
+
+	<%= image_tag("boxer.png", :id => "boxer", :size => "190x200") %>
+</div>
+
+
+<div class="callout-container callout2 top-right">
+	<h3>Your Score</h3>
+	<div class="scoreHolder">0</div>
+</div>
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video2", :class => "video" %>
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video3", :class => "video" %>
+<%= video_tag "", :size => "640x480", :controls => false, :id => "video1", :class => "video" %>
 
 <script>
 // alert("hi")
@@ -18,9 +39,21 @@ var totalVideoTime;
 
 document.addEventListener('keydown', function(e) {
 	keysPressed[e.keyCode] = true;
+	if(keysPressed['37']) { 
+		$("#button1").addClass("active");
+	}
+	if(keysPressed['38']) { 
+		$("#button2").addClass("active");
+	}	
 }, false);
 document.addEventListener('keyup', function(e) {
 	keysPressed[e.keyCode] = false;
+	if(!keysPressed['37']) { 
+		$("#button1").removeClass("active");
+	}
+	if(!keysPressed['38']) { 
+		$("#button2").removeClass("active");
+	}		
 }, false);
 
 var allLoaded = false
@@ -56,6 +89,13 @@ function playAfterLoading() {
 		clearInterval(gameInterval);
 		$("#video1").hide();
 		if(correct) {
+			var scoreHolder = $(".scoreHolder");
+			var currentScore = parseInt(scoreHolder[0].innerHTML);
+			scoreHolder[0].innerHTML = currentScore + 50;
+			var currentWidth = scoreHolder.width();
+			scoreHolder.css({
+				'margin-left': -currentWidth/2
+			})
 			$("#video2").show();
 			$("#video2")[0].play();
 		}
