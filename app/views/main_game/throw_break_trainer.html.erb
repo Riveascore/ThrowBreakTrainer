@@ -9,9 +9,12 @@
 // 	$("#header").text(randomNumber);
 // 	setTimeout(random, 1000);
 // }
-
-
+var correct;
+var throwType;
+var gameInterval;
 var keysPressed = {};
+var numberOfMilliseconds;
+var totalVideoTime;
 
 document.addEventListener('keydown', function(e) {
 	keysPressed[e.keyCode] = true;
@@ -20,9 +23,84 @@ document.addEventListener('keyup', function(e) {
 	keysPressed[e.keyCode] = false;
 }, false);
 
+var allLoaded = false
+var firstLoaded, secondLoaded, thirdLoaded;
+$("#video1")[0].addEventListener('loadeddata', function() {
+   firstLoaded = true;
+   if(secondLoaded && thirdLoaded) {
+   		playAfterLoading();
+   }
+}, false);
+$("#video2")[0].addEventListener('loadeddata', function() {
+   secondLoaded = true;
+   if(firstLoaded && thirdLoaded) {
+   		playAfterLoading();
+   }	   
+}, false);	
+$("#video3")[0].addEventListener('loadeddata', function() {
+   thirdLoaded = true;
+   if(firstLoaded && secondLoaded) {
+   		playAfterLoading();
+   }	   
+}, false);
+
 var allVideos = jQuery.parseJSON('<%= raw @videos %>');
 
+function playAfterLoading() {
+	$("#video1")[0].play();
+	gameInterval = setInterval(function() {
+		throwCheckLoop();
+	}, 1);
+
+	setTimeout(function() {
+		clearInterval(gameInterval);
+		$("#video1").hide();
+		if(correct) {
+			$("#video2").show();
+			$("#video2")[0].play();
+		}
+		else {
+			$("#video3").show();
+			$("#video3")[0].play();
+		}
+	}, numberOfMilliseconds);
+
+	setTimeout(function(){
+		gameLoop();
+	}, totalVideoTime);
+}
+
+function throwCheckLoop() {
+	switch(throwType) {
+		case "1":
+			if(keysPressed['38']) {
+				clearInterval(gameInterval);
+			}
+			else if(keysPressed['37']) {
+				correct = true;
+			}	
+			break;
+		case "2":
+			if(keysPressed['37']) {
+				clearInterval(gameInterval);
+			}		
+			else if(keysPressed['38']) {
+				correct = true;
+			}	
+			break;
+		case "P":
+			if(keysPressed['37'] && keysPressed['38']) {
+				correct = true;
+				clearInterval(gameInterval);
+			}	
+			break;					
+	}
+}
 function gameLoop() {
+	firstLoaded = false;
+	secondLoaded = false;
+	thirdLoaded = false;
+	correct = false;
 	var allMilliseconds = [];
 
 	var randomNumber = randomIntegerInRange(0, allVideos.length/3-1)*3;
@@ -39,110 +117,22 @@ function gameLoop() {
 		currentVideoHolder[0].src = "/videos/" + videoName;
 		currentVideoHolder.data('data-number-of-milliseconds', milliseconds);		
 	}
-	//Get max milliseconds of right/wrong
-	var totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
-	// alert(totalVideoTime);
+	totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
+
 	var video1 = $("#video1");
 
 	video1.show();
-	var numberOfMilliseconds = allMilliseconds[0];
-	var correct = false;
+	numberOfMilliseconds = allMilliseconds[0];
 	var video1 = $("#video1");
 
-	var throwType = firstVideoName.replace(/(\w{1}).*/, "$1");
+	throwType = firstVideoName.replace(/(\w{1}).*/, "$1");
 	$("#video2, #video3").hide();
-	// alert(throwType);
-	function throwCheckLoop(throwType) {
-
-		var keysPressedString = "";
-		for(var key in keysPressed) {
-			keysPressedString += key + keysPressed[key];
-		}
-		switch(throwType) {
-			case "1":
-				if(keysPressed['38']) {
-					clearInterval(gameInterval);
-				}
-				else if(keysPressed['37']) {
-					// alert(hi);
-					correct = true;
-				}	
-				break;
-			case "2":
-				if(keysPressed['37']) {
-					clearInterval(gameInterval);
-				}		
-				else if(keysPressed['38']) {
-					correct = true;
-				}	
-				break;
-			case "P":
-				if(keysPressed['37'] && keysPressed['38']) {
-					correct = true;
-					clearInterval(gameInterval);
-				}	
-				break;					
-		}
-	}
-	var allLoaded = false
-	var firstLoaded = false, secondLoaded = false, thirdLoaded = false;
-	$("#video1")[0].addEventListener('loadeddata', function() {
-	   firstLoaded = true;
-	   if(secondLoaded && thirdLoaded) {
-	   		playAfterLoading();
-	   }
-	}, false);
-	$("#video2")[0].addEventListener('loadeddata', function() {
-	   secondLoaded = true;
-	   if(firstLoaded && thirdLoaded) {
-	   		playAfterLoading();
-	   }	   
-	}, false);	
-	$("#video3")[0].addEventListener('loadeddata', function() {
-	   thirdLoaded = true;
-	   if(firstLoaded && secondLoaded) {
-	   		playAfterLoading();
-	   }	   
-	}, false);	
-
-	function playAfterLoading() {
-		video1[0].play();
-		var gameInterval = setInterval(function() {
-			throwCheckLoop();
-		}, 1);
-
-		setTimeout(function() {
-			clearInterval(gameInterval);
-			video1.hide();
-			if(correct) {
-				$("#video2").show();
-				$("#video2")[0].play();
-			}
-			else {
-				$("#video3").show();
-				$("#video3")[0].play();
-			}
-		}, numberOfMilliseconds);
-
-
-		setTimeout(function(){
-			gameLoop();
-		}, totalVideoTime);
-		return totalVideoTime;
-	}
 }
 
 gameLoop();
-// setTimeout(function(){
-// 	gameLoop();
-// }, 6000);
 
 function randomIntegerInRange(min, max) {
 	return Math.floor(Math.random()*(max - min + 1)) + min;
 }
 
-// }
-// fv.src.sub(/http:
-// video1.play();
 </script>
-
