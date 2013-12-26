@@ -21,7 +21,6 @@ document.addEventListener('keyup', function(e) {
 }, false);
 
 var allVideos = jQuery.parseJSON('<%= raw @videos %>');
-var videoNamesAll = jQuery.parseJSON('<%= raw @videoNames %>');
 
 function gameLoop() {
 	var allMilliseconds = [];
@@ -51,8 +50,9 @@ function gameLoop() {
 	var video1 = $("#video1");
 
 	var throwType = firstVideoName.replace(/(\w{1}).*/, "$1");
+	$("#video2, #video3").hide();
 	// alert(throwType);
-	function throwCheckLoop() {
+	function throwCheckLoop(throwType) {
 
 		var keysPressedString = "";
 		for(var key in keysPressed) {
@@ -84,31 +84,52 @@ function gameLoop() {
 				break;					
 		}
 	}
-	$("#video2, #video3").hide();
-	video1[0].play();
-	// var gameInterval = setInterval(throwCheckLoop(), 20);
-	var gameInterval = setInterval(function() {
-		throwCheckLoop();
-	}, 1);
+	var allLoaded = false
+	var firstLoaded = false, secondLoaded = false, thirdLoaded = false;
+	$("#video1")[0].addEventListener('loadeddata', function() {
+	   firstLoaded = true;
+	   if(secondLoaded && thirdLoaded) {
+	   		playAfterLoading();
+	   }
+	}, false);
+	$("#video2")[0].addEventListener('loadeddata', function() {
+	   secondLoaded = true;
+	   if(firstLoaded && thirdLoaded) {
+	   		playAfterLoading();
+	   }	   
+	}, false);	
+	$("#video3")[0].addEventListener('loadeddata', function() {
+	   thirdLoaded = true;
+	   if(firstLoaded && secondLoaded) {
+	   		playAfterLoading();
+	   }	   
+	}, false);	
 
-	setTimeout(function() {
-		clearInterval(gameInterval);
-		video1.hide();
-		if(correct) {
-			$("#video2").show();
-			$("#video2")[0].play();
-		}
-		else {
-			$("#video3").show();
-			$("#video3")[0].play();
-		}
-	}, numberOfMilliseconds);
+	function playAfterLoading() {
+		video1[0].play();
+		var gameInterval = setInterval(function() {
+			throwCheckLoop();
+		}, 1);
+
+		setTimeout(function() {
+			clearInterval(gameInterval);
+			video1.hide();
+			if(correct) {
+				$("#video2").show();
+				$("#video2")[0].play();
+			}
+			else {
+				$("#video3").show();
+				$("#video3")[0].play();
+			}
+		}, numberOfMilliseconds);
 
 
-	setTimeout(function(){
-		gameLoop();
-	}, totalVideoTime);
-	return totalVideoTime;
+		setTimeout(function(){
+			gameLoop();
+		}, totalVideoTime);
+		return totalVideoTime;
+	}
 }
 
 gameLoop();
