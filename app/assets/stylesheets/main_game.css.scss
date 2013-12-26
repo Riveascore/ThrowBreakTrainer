@@ -266,20 +266,21 @@ $magentoso: #fc2c71;
     }
   }
   &.callout3 {
-    margin: 20px;
+    margin: 15px;
     background: #cf4858;
-    width: 730px;
+    width: 760px;
     height: 480px;
     & .coverup {
-      border-radius: 10px;
-      -webkit-border-radius: 10px;
       border: none;
-      width: 640px;
-      height: 400px;
+      width: 636px;
+      height: 360px;
       overflow: hidden;
-      margin: 38px 0 0 40px;
+      margin: 40px 0 0 40px;
+      border: 20px solid #ad2d3c;
+      // border-bottom: 20px solid #ad2d3c;
       & video {
-        margin-top: -43px;
+        margin-top: -62px;
+        margin-left: -2px;
       }
     }
   }     
