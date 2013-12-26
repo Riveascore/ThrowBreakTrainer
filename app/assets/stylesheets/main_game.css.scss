@@ -4,7 +4,7 @@
 @import "compass/css3";
 
 body {
-  background-color: #3e4049;
+  background: #3e4049 !important;
 }
 
 $verdeoscuro: #00734a;
@@ -264,6 +264,24 @@ $magentoso: #fc2c71;
       left: 50%;
       margin-left: -14px;
     }
+  }
+  &.callout3 {
+    margin: 20px;
+    background: #cf4858;
+    width: 730px;
+    height: 480px;
+    & .coverup {
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border: none;
+      width: 640px;
+      height: 400px;
+      overflow: hidden;
+      margin: 38px 0 0 40px;
+      & video {
+        margin-top: -43px;
+      }
+    }
   }     
 }
 
@@ -311,3 +329,10 @@ $magentoso: #fc2c71;
   border-top: 20px solid #80628b;
 }
 
+.callout-container.top-right.callout3::before {
+  right: 100px;
+  bottom: -70px;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-top: 60px solid #cf4858;
+}

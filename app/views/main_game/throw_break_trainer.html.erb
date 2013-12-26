@@ -19,11 +19,16 @@
 	<h3>Your Score</h3>
 	<div class="scoreHolder">0</div>
 </div>
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video2", :class => "video" %>
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video3", :class => "video" %>
-<%= video_tag "", :size => "640x480", :controls => false, :id => "video1", :class => "video" %>
 
+<div class="callout-container callout3 top-right">
+	<div class="coverup">
+		<%= video_tag "", :size => "640x480", :controls => false, :id => "video2", :class => "video" %>
+		<%= video_tag "", :size => "640x480", :controls => false, :id => "video3", :class => "video" %>
+		<%= video_tag "", :size => "640x480", :controls => false, :id => "video1", :class => "video" %>
+	</div>
+</div>
 <script>
+
 // alert("hi")
 // function random() { 
 // 	var randomNumber = randomIntegerInRange(0, <%= @numberOfThrows %>);
@@ -174,5 +179,7 @@ gameLoop();
 function randomIntegerInRange(min, max) {
 	return Math.floor(Math.random()*(max - min + 1)) + min;
 }
-
+$("body").css({
+	"background": "#3e404"
+});
 </script>
