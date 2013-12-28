@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <p>
   <strong>First name:</strong>
@@ -16,9 +16,13 @@
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <strong>Email:</strong>
+  <%= @user.email %>
 </p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path %> -->
+
+<h1>
+  <%= gravatar_for @user %>
+  <%= full_name @user %>
+</h1>

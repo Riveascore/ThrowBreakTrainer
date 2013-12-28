@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 	#Using username as unique 
 	validates :username, presence: true, length: {maximum: 20, minimum: 3}, uniqueness: true
 	validates_format_of :email, :with => /@/
+	validates :email, presence: true
 	validates :password, presence: true, length: {minimum: 6, maximum: 40}
 
 	has_secure_password
