@@ -14,6 +14,8 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
+# Adding Devise for authentication
+gem 'devise'
 
 # Adding annotate so I can see what's in the db for each Model in the model file
 gem 'annotate', ">=2.6.0"

@@ -1,4 +1,7 @@
 ThrowBreakTrainer::Application.routes.draw do
+  root to: "main_game#throw_break_trainer"
+
+  devise_for :users
   get "main_game/throw_break_trainer"
   resources :video_infos
 
@@ -6,6 +9,14 @@ ThrowBreakTrainer::Application.routes.draw do
 
   resources :users
 
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
+  # match '/sessions/user', to: 'devise/sessions',  via: 'post'
+  devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
