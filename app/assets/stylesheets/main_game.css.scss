@@ -239,22 +239,22 @@ $magentoso: #fc2c71;
   position: absolute;
   color: white;    
   &.callout1 {
-    margin: 50px 0 0 800px;
+    margin: 110px 0 0 800px;
     width: 400px;
     height: 230px;    
     background: #f6624a;
     & h3 {
-      margin: 25px 0 0 15px;
+      margin: 15px 0 0 15px;
       font-size: 45px;
     }
   } 
   &.callout2 {
-    margin: 325px 0 0 1000px;
+    margin: 385px 0 0 1000px;
     width: 200px;
     height: 120px;     
     background: #80628b;
     & h3 {
-      margin: 20px 0 0 30px;
+      margin: 10px 0 0 30px;
       font-size: 25px;      
     }
     & .scoreHolder {
@@ -266,7 +266,7 @@ $magentoso: #fc2c71;
     }
   }
   &.callout3 {
-    margin: 15px;
+    margin: 75px 0 0 15px;
     background: #cf4858;
     width: 760px;
     height: 480px;
@@ -337,3 +337,16 @@ $magentoso: #fc2c71;
   border-right: 60px solid transparent;
   border-top: 60px solid #cf4858;
 }
+
+#topHeaderToolbar .navbar-inner div ul li a {
+  font-family: "Raleway","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif; 
+  font-size: 20px; 
+  height: 40px;
+  font-weight: bold;
+}
+
+.navbar-inner {
+    height: 60px;  
+}
+
+// .navbar-inner div ul

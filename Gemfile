@@ -9,6 +9,11 @@ gem 'rails_12factor', group: :production
 # Gem to configure using postgres
 gem 'pg'
 
+# Adding functionality for twitter bootstrap and less
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+
 # Adding compass for sass styling
 gem 'compass-rails'
 # Use SCSS for stylesheets
