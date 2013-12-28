@@ -14,6 +14,12 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
+
+# Adding annotate so I can see what's in the db for each Model in the model file
+gem 'annotate', ">=2.6.0"
+
+#Adding bcrypt-ruby for encrypting passwords
+gem 'bcrypt-ruby'
 # Adding compass for sass styling
 gem 'compass-rails'
 # Use SCSS for stylesheets
@@ -53,3 +59,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :test do
+	gem 'rspec-rails', "~> 2.12"
+end
