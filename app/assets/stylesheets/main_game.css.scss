@@ -7,95 +7,9 @@ body {
   background: #3e4049 !important;
 }
 
-$verdeoscuro: #00734a;
-$verdeclaro:  #00ce30;
-$magentoso: #fc2c71;
-
-.arcade-button {
-  z-index: 50;
-	outline: none;
-  position: absolute;
-  cursor: pointer;
-  width: 120px;
-  height: 120px;
-  font-size: 30px;
-  @include border-radius(60px);
-  padding: 20px;
-  border: $magentoso 1px solid;
-  background-color: $magentoso;
-  @include background-image(radial-gradient(40px 40px, 
-    circle contain, 
-    $magentoso 15px, 
-    lighten($magentoso,6%) 30px, 
-    lighten($magentoso,6%) 40px, 
-    darken($magentoso,1%) 65px));
-  background-position: center center;
-  background-repeat: no-repeat;
-  @include box-shadow(
-    rgba(0,0,0,.8) 0 0 10px 5px,
-    rgba(255,255,255,.7) 0 3px 3px inset,
-    darken($magentoso,40%) 0 8px 10px inset,
-    rgba(0,0,0,.3) 0 20px 10px inset,
-    rgba(255,255,255,.5) 0 -2px 3px inset,
-    darken($magentoso,30%) 0 -7px 20px inset);
-  &:hover {
-    @include background-image(radial-gradient(40px 40px, 
-      circle contain, 
-      lighten($magentoso,5%), 
-      lighten($magentoso,10%) 30px, 
-      lighten($magentoso,10%) 40px, 
-      lighten($magentoso,5%) 65px));
-    @include box-shadow(
-      rgba(0,0,0,.8) 0 0 10px 5px,
-      rgba(255,255,255,.9) 0 3px 3px inset,
-      darken($magentoso,30%) 0 8px 10px inset,
-      rgba(0,0,0,.3) 0 20px 10px inset,
-      rgba(255,255,255,.5) 0 -2px 3px inset,
-      darken($magentoso,30%) 0 -7px 20px inset);
-  }
-  &.active {
-    border-color: darken($magentoso, 90%);
-    @include background-image(radial-gradient(40px 40px, 
-      circle contain, 
-      $magentoso 15px, 
-      darken($magentoso,15%) 30px, 
-      darken($magentoso,15%) 40px, 
-      darken($magentoso,25%) 65px));
-    @include box-shadow(
-      rgba(0,0,0,.8) 0 0 10px 5px,
-      rgba(0,0,0,.8) 0 3px 3px inset,
-      darken($magentoso,30%) 0 8px 10px inset,
-      rgba(0,0,0,.3) 0 20px 10px inset,
-      rgba(255,255,255,.3) 0 -2px 3px inset,
-      darken($magentoso,30%) 0 -7px 20px inset);
-  }
-  +.inner {
-    content: '';
-    position: absolute;
-    z-index: 10;
-    top: -20px;
-    left: -21px;
-      margin: 0;
-  padding: 20px;
-  background: darken($magentoso, 10px);
-  width: 120px;
-  height: 120px;
-  @include border-radius(80px);
-  @include box-shadow(
-    darken($magentoso,20%) 0 4px 5px inset,
-    rgba(255,255,255,.5) 0 12px 5px inset,
-    darken($magentoso,30%) 0 -12px 5px inset,
-    rgba(0,0,0,.8) 0 4px 8px);
-  }
-}
-
 .button-container {
   position: absolute;
 }
-
-
-
-  
 
 .the-button {
     
@@ -155,7 +69,7 @@ $magentoso: #fc2c71;
 }
 
 
-.the-button.active {
+.the-button.active, .the-button:active {
     -webkit-box-shadow: 0 0 .5em rgba(0,0,0,1),
         inset 0 .1em .3em rgba(0,0,0,.5),
         inset 0 -.1em .3em rgba(0,0,0,.5);
@@ -170,8 +84,6 @@ $magentoso: #fc2c71;
 .the-button.active:before {
     top: 11.5%;
 }
-
-
 
 .button-frame {
     

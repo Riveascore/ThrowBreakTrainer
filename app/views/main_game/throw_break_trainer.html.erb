@@ -101,6 +101,19 @@ $("#video3")[0].addEventListener('loadeddata', function() {
    }	   
 }, false);
 
+$("#button1.the-button.plastic").mouseup(function() {
+	keysPressed['37'] = true;
+});
+$("#button1").mousedown(function() {
+	keysPressed['37'] = false;
+});
+
+$("#button2").mouseup(function() {
+	keysPressed['38'] = true;
+});
+$("#button2").mousedown(function() {
+	keysPressed['38'] = false;
+});
 var allVideos = jQuery.parseJSON('<%= raw @videos %>');
 
 function playAfterLoading() {
