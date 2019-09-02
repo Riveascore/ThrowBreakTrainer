@@ -7,7 +7,7 @@ gem 'rails', '4.0.1'
 gem 'rails_12factor', group: :production
 
 # Gem to configure using postgres
-gem 'pg'
+# gem 'pg'
 
 # Adding functionality for twitter bootstrap and less
 gem "therubyracer"
@@ -44,6 +44,9 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+# gem 'pg'
+gem "pg", '~> 0.18' 
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
