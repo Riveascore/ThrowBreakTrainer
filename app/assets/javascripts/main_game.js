@@ -71,7 +71,10 @@ $("#button2").mouseup('touchstart', function() {
 $("#button2").mousedown('touchend', function() {
 	keysPressed['38'] = false;
 });
-var allVideos = jQuery.parseJSON('<%= raw @videos %>');
+
+
+var videosFromInput = $('#raw-videos').val();
+var allVideos = jQuery.parseJSON('');
 
 function playAfterLoading() {
 	$("#video1")[0].play();

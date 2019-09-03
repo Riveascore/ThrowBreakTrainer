@@ -46,6 +46,5 @@
 		<%= video_tag "", :size => "640x480", :controls => false, :id => "video1", :class => "video", :type => "video/ogg" %>
 	</div>
 </div>
-<script>
 
-</script>
+<%= hidden_field_tag('raw-videos', (raw @videos)) %>
