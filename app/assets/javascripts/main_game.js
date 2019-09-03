@@ -1,80 +1,90 @@
-var correct;
-var throwType;
-var gameInterval;
-var keysPressed = {};
-var numberOfMilliseconds;
-var totalVideoTime;
+$(document).ready(function () {
+    runEntireGame();
 
-document.addEventListener('keydown', function(e) {
-	keysPressed[e.keyCode] = true;
-	if(keysPressed['37']) { 
-		$("#button1").addClass("active");
-	}
-	if(keysPressed['38']) { 
-		$("#button2").addClass("active");
-	}	
-}, false);
-document.addEventListener('keyup', function(e) {
-	keysPressed[e.keyCode] = false;
-	if(!keysPressed['37']) { 
-		$("#button1").removeClass("active");
-	}
-	if(!keysPressed['38']) { 
-		$("#button2").removeClass("active");
-	}		
-}, false);
+    var videosFromInput = $('#raw-videos').val();
+    allVideos = jQuery.parseJSON(videosFromInput);
 
-var allLoaded = false
-var firstLoaded, secondLoaded, thirdLoaded;
-$("#video1")[0].addEventListener('loadeddata', function() {
-   firstLoaded = true;
-   if(secondLoaded && thirdLoaded) {
-   		playAfterLoading();
-   }
-}, false);
-$("#video2")[0].addEventListener('loadeddata', function() {
-   secondLoaded = true;
-   if(firstLoaded && thirdLoaded) {
-   		playAfterLoading();
-   }	   
-}, false);	
-$("#video3")[0].addEventListener('loadeddata', function() {
-   thirdLoaded = true;
-   if(firstLoaded && secondLoaded) {
-   		playAfterLoading();
-   }	   
-}, false);
-
-$("#button1.the-button.plastic").mouseup(function() {
-	keysPressed['37'] = true;
-});
-$("#button1").mousedown(function() {
-	keysPressed['37'] = false;
-});
-$("#button1.the-button.plastic").on('touchstart', function() {
-	keysPressed['37'] = true;
-});
-$("#button1").mousedown('touchend', function() {
-	keysPressed['37'] = false;
+    gameLoop(allVideos);
+    $("body").css({
+        "background": "#3e404"
+    });
 });
 
+function runEntireGame() {
+    var correct;
+    var throwType;
+    var gameInterval;
+    var keysPressed = {};
+    var numberOfMilliseconds;
+    var totalVideoTime;
 
-$("#button2").mouseup(function() {
-	keysPressed['38'] = true;
-});
-$("#button2").mousedown(function() {
-	keysPressed['38'] = false;
-});
-$("#button2").mouseup('touchstart', function() {
-	keysPressed['38'] = true;
-});
-$("#button2").mousedown('touchend', function() {
-	keysPressed['38'] = false;
-});
+    document.addEventListener('keydown', function(e) {
+        keysPressed[e.keyCode] = true;
+        if(keysPressed['37']) { 
+            $("#button1").addClass("active");
+        }
+        if(keysPressed['38']) { 
+            $("#button2").addClass("active");
+        }	
+    }, false);
+    document.addEventListener('keyup', function(e) {
+        keysPressed[e.keyCode] = false;
+        if(!keysPressed['37']) { 
+            $("#button1").removeClass("active");
+        }
+        if(!keysPressed['38']) { 
+            $("#button2").removeClass("active");
+        }		
+    }, false);
+
+    var allLoaded = false
+    var firstLoaded, secondLoaded, thirdLoaded;
+    $("#video1")[0].addEventListener('loadeddata', function() {
+    firstLoaded = true;
+    if(secondLoaded && thirdLoaded) {
+            playAfterLoading();
+    }
+    }, false);
+    $("#video2")[0].addEventListener('loadeddata', function() {
+    secondLoaded = true;
+    if(firstLoaded && thirdLoaded) {
+            playAfterLoading();
+    }	   
+    }, false);	
+    $("#video3")[0].addEventListener('loadeddata', function() {
+    thirdLoaded = true;
+    if(firstLoaded && secondLoaded) {
+            playAfterLoading();
+    }	   
+    }, false);
+
+    $("#button1.the-button.plastic").mouseup(function() {
+        keysPressed['37'] = true;
+    });
+    $("#button1").mousedown(function() {
+        keysPressed['37'] = false;
+    });
+    $("#button1.the-button.plastic").on('touchstart', function() {
+        keysPressed['37'] = true;
+    });
+    $("#button1").mousedown('touchend', function() {
+        keysPressed['37'] = false;
+    });
 
 
-var videosFromInput = $('#raw-videos').val();
-var allVideos = jQuery.parseJSON('');
+    $("#button2").mouseup(function() {
+        keysPressed['38'] = true;
+    });
+    $("#button2").mousedown(function() {
+        keysPressed['38'] = false;
+    });
+    $("#button2").mouseup('touchstart', function() {
+        keysPressed['38'] = true;
+    });
+    $("#button2").mousedown('touchend', function() {
+        keysPressed['38'] = false;
+    });
+}
 
 function playAfterLoading() {
 	$("#video1")[0].play();
@@ -133,7 +143,7 @@ function throwCheckLoop() {
 			break;					
 	}
 }
-function gameLoop() {
+function gameLoop(allVideos) {
 	firstLoaded = false;
 	secondLoaded = false;
 	thirdLoaded = false;
@@ -166,11 +176,6 @@ function gameLoop() {
 	$("#video2, #video3").hide();
 }
 
-gameLoop();
-
 function randomIntegerInRange(min, max) {
 	return Math.floor(Math.random()*(max - min + 1)) + min;
 }
-$("body").css({
-	"background": "#3e404"
-});
