@@ -69,3 +69,9 @@ end
 group :test do
 	gem 'rspec-rails', "~> 2.12"
 end
+
+group :staging, :development do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+end
