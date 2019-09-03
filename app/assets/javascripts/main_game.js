@@ -2,7 +2,7 @@ $(document).ready(function () {
     runEntireGame();
 
     var videosFromInput = $('#raw-videos').val();
-    allVideos = jQuery.parseJSON(videosFromInput);
+    var allVideos = jQuery.parseJSON(videosFromInput);
 
     gameLoop(allVideos);
     $("body").css({
