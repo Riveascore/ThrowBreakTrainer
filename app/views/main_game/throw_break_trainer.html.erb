@@ -16,37 +16,18 @@
   </div>
 </div> 
 -->
+
 <div class="container">
-	<div class="callout-container top-right callout1">
-		<h3>Controls</h3>
-		<div class="button-container container1">
-			<div class="button-frame plastic">
-				<div id="button1" class="the-button plastic"></div>
-			</div>
-		</div>
-		<div class="button-container container2">
-			<div class="button-frame plastic">
-				<div id="button2" class="the-button plastic"></div>
-			</div>
-		</div>
 
-		<%= image_tag("boxer.png", :id => "boxer", :size => "190x200") %>
-	</div>
+	<%= render partial: "controls" %>
 
+	<%= render partial: "scoreboard" %>
 
-	<div class="callout-container callout2 top-right">
-		<h3>Your Score</h3>
-		<div class="scoreHolder">0</div>
-	</div>
+	<%= render partial: "videos" %>
 
-	<div class="callout-container callout3 top-right">
-		<div class="coverup">
-			<%= video_tag "", :size => "640x480", :controls => false, :id => "video2", :class => "video", :type => "video/ogg" %>
-			<%= video_tag "", :size => "640x480", :controls => false, :id => "video3", :class => "video", :type => "video/ogg" %>
-			<%= video_tag "", :size => "640x480", :controls => false, :id => "video1", :class => "video", :type => "video/ogg" %>
-		</div>
-	</div>
 </div>
+
+
 <%= render partial: "game_script" %>
 
 <%= hidden_field_tag('raw-videos', (raw @videos)) %>
