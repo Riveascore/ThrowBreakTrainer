@@ -17,13 +17,24 @@
 </div> 
 -->
 
-<div class="container">
+<div class="container-fluid">
 
-	<%= render partial: "controls" %>
+	<div class="row">
 
-	<%= render partial: "scoreboard" %>
+	
+		<div class="col-xs-8">
+			<%= render partial: "videos" %>
+		</div>
 
-	<%= render partial: "videos" %>
+		
+		<div class="col-xs-4">
+			<%= render partial: "controls" %>
+
+			<%= render partial: "scoreboard" %>
+		</div>
+
+		
+	</div>
 
 </div>
 
