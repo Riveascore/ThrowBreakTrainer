@@ -1,12 +1,14 @@
 $(document).ready(function () {
   window.keysPressed = {};
 
+  
+  var videosFromInput = $('#raw-videos').val();
+  window.allVideos = jQuery.parseJSON(videosFromInput);
+  
+
   runEntireGame();
 
-  var videosFromInput = $('#raw-videos').val();
-  var allVideos = jQuery.parseJSON(videosFromInput);
-
-  gameLoop(allVideos);
+  gameLoop();
   $("body").css({
     "background": "#3e404"
   });
@@ -163,17 +165,17 @@ function throwCheckLoop() {
   }
 }
 
-function gameLoop(allVideos) {
+function gameLoop() {
   firstLoaded = false;
   secondLoaded = false;
   thirdLoaded = false;
   correct = false;
   var allMilliseconds = [];
 
-  var randomNumber = randomIntegerInRange(0, allVideos.length / 3 - 1) * 3;
+  var randomNumber = randomIntegerInRange(0, window.allVideos.length / 3 - 1) * 3;
   var firstVideoName = "";
   for (var i = 0; i < 3; i++) {
-    var currentVideo = allVideos[randomNumber + i];
+    var currentVideo = window.allVideos[randomNumber + i];
     var videoName = currentVideo.video_name;
     if (i == 0) {
       firstVideoName = videoName;
