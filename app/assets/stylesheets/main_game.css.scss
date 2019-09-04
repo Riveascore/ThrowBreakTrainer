@@ -294,6 +294,22 @@ body {
 }
 
 @media (max-width: 768px) {
+  .callout1 {
+    height: 15em !important;
+    h3 {
+      margin-top: 0.2em !important;
+    }
+  }
+  .callout1, .callout2 {
+    margin-top: 1em !important;
+  }
+  .container1 {
+    margin-top: 9em;
+  }
+  .container2 {
+    margin-top: 6em;
+  }
+  
   .callout-container.callout1 {
     margin-left: 0;
     h3 {
