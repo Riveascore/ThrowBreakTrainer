@@ -148,7 +148,7 @@ body {
   border-radius: 5px;
   z-index: 50;
   font-family: "Raleway","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
-  position: absolute;
+  // position: absolute;
   color: white;    
   &.callout1 {
     // margin: 110px 0 0 800px;
@@ -163,7 +163,7 @@ body {
   } 
   &.callout2 {
     // margin: 385px 0 0 1000px;
-    margin: 385px 0 0 0;
+    // margin: 385px 0 0 0;
     width: 200px;
     height: 120px;     
     background: #80628b;
@@ -180,7 +180,8 @@ body {
     }
   }
   &.callout3 {
-    margin: 75px 0 0 15px;
+    // margin: 75px 0 0 15px;
+    padding-top: 0.5em;
     background: #cf4858;
     width: 760px;
     height: 480px;
