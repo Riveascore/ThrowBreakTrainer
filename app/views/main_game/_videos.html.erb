@@ -1,7 +1,13 @@
 	<div class="callout-container callout3 top-right">
 		<div class="coverup">
-			<%= video_tag "", :controls => false, :id => "video2", :class => "video", :type => "video/ogg" %>
-			<%= video_tag "", :controls => false, :id => "video3", :class => "video", :type => "video/ogg" %>
-			<%= video_tag "", :controls => false, :id => "video1", :class => "video", :type => "video/ogg" %>
+
+			<%= render partial: "single_video", locals: { video_id: "video1" } %>
+			<%= render partial: "single_video", locals: { video_id: "video2" } %>
+			<%= render partial: "single_video", locals: { video_id: "video3" } %>
+
+
+			<%#= video_tag "", :controls => false, :id => "video2", :class => "video", :type => "video/ogg" %>
+			<%#= video_tag "", :controls => false, :id => "video3", :class => "video", :type => "video/ogg" %>
+			<%#= video_tag "", :controls => false, :id => "video1", :class => "video", :type => "video/ogg" %>
 		</div>
 	</div>

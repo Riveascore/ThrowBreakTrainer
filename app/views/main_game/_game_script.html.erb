@@ -10,7 +10,7 @@ var correct;
 var throwType;
 var gameInterval;
 var keysPressed = {};
-var numberOfMilliseconds;
+window.numberOfMilliseconds;
 var totalVideoTime;
 
 document.addEventListener('keydown', function(e) {
@@ -34,24 +34,26 @@ document.addEventListener('keyup', function(e) {
 
 var allLoaded = false
 var firstLoaded, secondLoaded, thirdLoaded;
-$("#video1")[0].addEventListener('loadeddata', function() {
+$("#video1").on('finishedLoading', function() {
    firstLoaded = true;
    if(secondLoaded && thirdLoaded) {
    		playAfterLoading();
    }
-}, false);
-$("#video2")[0].addEventListener('loadeddata', function() {
+});
+
+$("#video3").on('finishedLoading', function() {
    secondLoaded = true;
    if(firstLoaded && thirdLoaded) {
    		playAfterLoading();
    }	   
-}, false);	
-$("#video3")[0].addEventListener('loadeddata', function() {
+});
+
+$("#video3").on('finishedLoading', function() {
    thirdLoaded = true;
    if(firstLoaded && secondLoaded) {
    		playAfterLoading();
    }	   
-}, false);
+});
 
 $("#button1.the-button.plastic").mouseup(function() {
 	keysPressed['37'] = true;
@@ -82,7 +84,6 @@ $("#button2").mousedown('touchend', function() {
 var allVideos = jQuery.parseJSON('<%= raw @videos %>');
 
 function playAfterLoading() {
-	$("#video1")[0].muted = true;
 	$("#video1")[0].play();
 	gameInterval = setInterval(function() {
 		throwCheckLoop();
@@ -108,7 +109,7 @@ function playAfterLoading() {
 			$("#video3")[0].muted = true;
 			$("#video3")[0].play();
 		}
-	}, numberOfMilliseconds);
+	}, window.numberOfMilliseconds);
 
 	setTimeout(function(){
 		gameLoop();
@@ -153,13 +154,22 @@ function gameLoop() {
 	for(var i = 0; i < 3; i++) {
 		var currentVideo = allVideos[randomNumber + i];
 		var videoName = currentVideo.video_name;
+		var mp4VideoName = videoName.replace("ogv", "mp4");
 		if(i == 0) {
 			firstVideoName = videoName;
 		}		
 		var milliseconds = currentVideo.number_of_milliseconds;
 		allMilliseconds.push(parseInt(milliseconds));
 		currentVideoHolder = $("#video" + (i + 1));
-		currentVideoHolder[0].src = "/videos/" + videoName;
+
+		videoSources = currentVideoHolder.find('source');
+
+		videoSources[0].src = "/videos/" + videoName;
+		videoSources[1].src = "/videos/mp4/" + mp4VideoName;
+
+		currentVideoHolder[0].load();	
+		currentVideoHolder.trigger('finishedLoading')
+		
 		currentVideoHolder.data('data-number-of-milliseconds', milliseconds);		
 	}
 	totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
@@ -167,7 +177,7 @@ function gameLoop() {
 	var video1 = $("#video1");
 
 	video1.show();
-	numberOfMilliseconds = allMilliseconds[0];
+	window.numberOfMilliseconds = allMilliseconds[0];
 	var video1 = $("#video1");
 
 	throwType = firstVideoName.replace(/(\w{1}).*/, "$1");
