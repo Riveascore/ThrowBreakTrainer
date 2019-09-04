@@ -88,7 +88,9 @@ function runEntireGame() {
 }
 
 function playVideo(videoSelector) {
-  var playPromise = $(videoSelector)[0].play();
+  var vid = $(videoSelector)[0];
+  vid.muted = true;
+  var playPromise = vid.play();
 
   if (playPromise !== undefined) {
     playPromise.then(_ => {
