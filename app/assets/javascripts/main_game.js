@@ -104,7 +104,7 @@ function playVideo(videoSelector) {
 
 function playAfterLoading() {
   var videoSelector = "#video1";
-  playVideo(videoSelector)
+  playVideo(videoSelector);
   
   gameInterval = setInterval(function () {
     throwCheckLoop();
@@ -122,10 +122,12 @@ function playAfterLoading() {
         'margin-left': -currentWidth / 2
       })
       $("#video2").show();
-      $("#video2")[0].play();
+      var videoSelector2 = "#video2";
+      playVideo(videoSelector2);
     } else {
       $("#video3").show();
-      $("#video3")[0].play();
+      var videoSelector3 = "#video3";
+      playVideo(videoSelector3);
     }
   }, numberOfMilliseconds);
 
