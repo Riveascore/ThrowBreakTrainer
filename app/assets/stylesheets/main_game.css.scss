@@ -151,7 +151,8 @@ body {
   position: absolute;
   color: white;    
   &.callout1 {
-    margin: 110px 0 0 800px;
+    // margin: 110px 0 0 800px;
+    margin: 110px 0 0 0;
     width: 400px;
     height: 230px;    
     background: #f6624a;
@@ -161,7 +162,8 @@ body {
     }
   } 
   &.callout2 {
-    margin: 385px 0 0 1000px;
+    // margin: 385px 0 0 1000px;
+    margin: 385px 0 0 0;
     width: 200px;
     height: 120px;     
     background: #80628b;
