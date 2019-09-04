@@ -4,7 +4,7 @@ $(document).ready(function () {
   
   var videosFromInput = $('#raw-videos').val();
   window.allVideos = jQuery.parseJSON(videosFromInput);
-  
+  window.totalVideoTime;
 
   runEntireGame();
 
@@ -19,7 +19,7 @@ function runEntireGame() {
   var throwType;
   var gameInterval;
   var numberOfMilliseconds;
-  var totalVideoTime;
+  
 
   document.addEventListener('keydown', function (e) {
     window.keysPressed[e.keyCode] = true;
@@ -137,7 +137,7 @@ function playAfterLoading() {
 
   setTimeout(function () {
     gameLoop();
-  }, totalVideoTime);
+  }, window.totalVideoTime + 300);
 }
 
 function throwCheckLoop() {
@@ -186,7 +186,7 @@ function gameLoop() {
     currentVideoHolder[0].src = "/videos/" + videoName;
     currentVideoHolder.data('data-number-of-milliseconds', milliseconds);
   }
-  totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
+  window.totalVideoTime = allMilliseconds[0] + Math.max(allMilliseconds[1], allMilliseconds[2]);
 
   var video1 = $("#video1");
 
