@@ -34,26 +34,26 @@ document.addEventListener('keyup', function(e) {
 
 var allLoaded = false
 var firstLoaded, secondLoaded, thirdLoaded;
-$("#video1").on('finishedLoading', function() {
+$("#video1")[0].addEventListener('loadeddata', function() {
    firstLoaded = true;
    if(secondLoaded && thirdLoaded) {
    		playAfterLoading();
    }
-});
+}, false);
 
-$("#video3").on('finishedLoading', function() {
+$("#video2")[0].addEventListener('loadeddata', function() {
    secondLoaded = true;
    if(firstLoaded && thirdLoaded) {
    		playAfterLoading();
    }	   
-});
+}, false);
 
-$("#video3").on('finishedLoading', function() {
+$("#video3")[0].addEventListener('loadeddata', function() {
    thirdLoaded = true;
    if(firstLoaded && secondLoaded) {
    		playAfterLoading();
    }	   
-});
+}, false);
 
 $("#button1.the-button.plastic").mouseup(function() {
 	keysPressed['37'] = true;
@@ -168,7 +168,6 @@ function gameLoop() {
 		videoSources[1].src = "/videos/mp4/" + mp4VideoName;
 
 		currentVideoHolder[0].load();	
-		currentVideoHolder.trigger('finishedLoading')
 		
 		currentVideoHolder.data('data-number-of-milliseconds', milliseconds);		
 	}
