@@ -87,8 +87,25 @@ function runEntireGame() {
   });
 }
 
+function playVideo(videoSelector) {
+  var playPromise = $(videoSelector)[0].play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+    });
+  }
+}
+
 function playAfterLoading() {
-  $("#video1")[0].play();
+  var videoSelector = "#video1";
+  playVideo(videoSelector)
+  
   gameInterval = setInterval(function () {
     throwCheckLoop();
   }, 1);
