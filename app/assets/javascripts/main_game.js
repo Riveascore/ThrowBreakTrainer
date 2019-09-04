@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  window.keysPressed = {};
+
   runEntireGame();
 
   var videosFromInput = $('#raw-videos').val();
@@ -14,25 +16,24 @@ function runEntireGame() {
   var correct;
   var throwType;
   var gameInterval;
-  var keysPressed = {};
   var numberOfMilliseconds;
   var totalVideoTime;
 
   document.addEventListener('keydown', function (e) {
-    keysPressed[e.keyCode] = true;
-    if (keysPressed['37']) {
+    window.keysPressed[e.keyCode] = true;
+    if (window.keysPressed['37']) {
       $("#button1").addClass("active");
     }
-    if (keysPressed['38']) {
+    if (window.keysPressed['38']) {
       $("#button2").addClass("active");
     }
   }, false);
   document.addEventListener('keyup', function (e) {
-    keysPressed[e.keyCode] = false;
-    if (!keysPressed['37']) {
+    window.keysPressed[e.keyCode] = false;
+    if (!window.keysPressed['37']) {
       $("#button1").removeClass("active");
     }
-    if (!keysPressed['38']) {
+    if (!window.keysPressed['38']) {
       $("#button2").removeClass("active");
     }
   }, false);
@@ -59,30 +60,30 @@ function runEntireGame() {
   }, false);
 
   $("#button1.the-button.plastic").mouseup(function () {
-    keysPressed['37'] = true;
+    window.keysPressed['37'] = true;
   });
   $("#button1").mousedown(function () {
-    keysPressed['37'] = false;
+    window.keysPressed['37'] = false;
   });
   $("#button1.the-button.plastic").on('touchstart', function () {
-    keysPressed['37'] = true;
+    window.keysPressed['37'] = true;
   });
   $("#button1").mousedown('touchend', function () {
-    keysPressed['37'] = false;
+    window.keysPressed['37'] = false;
   });
 
 
   $("#button2").mouseup(function () {
-    keysPressed['38'] = true;
+    window.keysPressed['38'] = true;
   });
   $("#button2").mousedown(function () {
-    keysPressed['38'] = false;
+    window.keysPressed['38'] = false;
   });
   $("#button2").mouseup('touchstart', function () {
-    keysPressed['38'] = true;
+    window.keysPressed['38'] = true;
   });
   $("#button2").mousedown('touchend', function () {
-    keysPressed['38'] = false;
+    window.keysPressed['38'] = false;
   });
 }
 
@@ -119,21 +120,21 @@ function playAfterLoading() {
 function throwCheckLoop() {
   switch (throwType) {
     case "1":
-      if (keysPressed['38']) {
+      if (window.keysPressed['38']) {
         clearInterval(gameInterval);
-      } else if (keysPressed['37']) {
+      } else if (window.keysPressed['37']) {
         correct = true;
       }
       break;
     case "2":
-      if (keysPressed['37']) {
+      if (window.keysPressed['37']) {
         clearInterval(gameInterval);
-      } else if (keysPressed['38']) {
+      } else if (window.keysPressed['38']) {
         correct = true;
       }
       break;
     case "P":
-      if (keysPressed['37'] && keysPressed['38']) {
+      if (window.keysPressed['37'] && window.keysPressed['38']) {
         correct = true;
         clearInterval(gameInterval);
       }
