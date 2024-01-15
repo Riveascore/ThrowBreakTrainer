@@ -16,8 +16,8 @@ gem 'rails_12factor', group: :production
 
 # Adding functionality for twitter bootstrap and less
 gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+# gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+# gem "twitter-bootstrap-rails"
 
 # Adding Devise for authentication
 gem 'devise'
@@ -30,7 +30,7 @@ gem 'bcrypt-ruby'
 # Adding compass for sass styling
 gem 'compass-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+# gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
