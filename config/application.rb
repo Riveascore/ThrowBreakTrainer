@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module ThrowBreakTrainer
   class Application < Rails::Application
-    config.assets.paths << "#{Rails.root}/public/videos"
+    # config.assets.paths << "#{Rails.root}/public/videos"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.0
 
