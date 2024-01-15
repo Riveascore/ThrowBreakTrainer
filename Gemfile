@@ -5,7 +5,8 @@ ruby '3.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '4.0.1'
 # gem 'rails', '4.2.4'
-gem 'rails', '4.2.8'
+# gem 'rails', '4.2.8'
+gem 'rails', github: 'rails/rails'
 
 # Enabling STDOUT so logging can be sent to Heroku
 gem 'rails_12factor', group: :production
@@ -22,20 +23,20 @@ gem "twitter-bootstrap-rails"
 gem 'devise'
 
 # Adding annotate so I can see what's in the db for each Model in the model file
-gem 'annotate', ">=2.6.0"
+# gem 'annotate', ">=2.6.0"
 
 #Adding bcrypt-ruby for encrypting passwords
 gem 'bcrypt-ruby'
 # Adding compass for sass styling
 gem 'compass-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -50,7 +51,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # gem 'pg'
-gem "pg", '~> 0.18' 
+# gem "pg", '~> 0.18' 
+gem 'pg'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
