@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 		 #Added :login so you can use username/email to login
 		:authentication_keys => [:login]         
 	#Using username as unique 
-	validates :username, presence: true, length: {maximum: 20, minimum: 3}, uniqueness: true, :case_sensitive => false
+	validates :username, presence: true, length: {maximum: 20, minimum: 3}, uniqueness: { case_sensitive: false }
 	validates_format_of :email, :with => /@/
 	validates :email, presence: true
 	validates :password, presence: true, length: {minimum: 6, maximum: 40}
